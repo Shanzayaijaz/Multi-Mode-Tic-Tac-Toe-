@@ -1,57 +1,91 @@
-# Multi-Mode-Tic-Tac-Toe-
+Multi-Mode Tic-Tac-Toe
+Overview
+This is a console-based Tic-Tac-Toe game in C designed for Windows terminals. It supports:
 
-## Overview
+2-player classic mode
 
-This is a console-based **Tic-Tac-Toe game** implemented in **C** with support for:
-- Classic 2-player mode
-- AI mode (Player vs Computer)
-- 3-player extended mode (4x4 board)
-- Scoreboard tracking using file I/O
+AI mode (Player vs Computer)
 
-The game is designed to be played in a Windows terminal and utilizes functions like `gotoxy`, `Beep`, and `system("cls")` for better interactivity and aesthetics.
+3-player mode (4x4 board)
 
----
+Scoreboard tracking with file I/O
+It uses gotoxy, Beep, and system("cls") for interactive console behavior.
 
-## Game Modes
+Game Modes
+1. Classic 2-Player Mode
+Board: 3x3
 
-### 1. **2-Player Classic Mode**
-- 3x3 board
-- Players choose between X and O
-- Win by aligning three symbols in a row, column, or diagonal
+Players: Choose between X and O
 
-### 2. **AI Mode**
-- Human vs Computer
-- The computer plays with simple logic
-- Board state is updated after each move
-- Scoreboard logs the winner and loser
+Win Condition: 3 in a row (row/column/diagonal)
 
-### 3. **3-Player Mode**
-- 4x4 board
-- Players use symbols X, Y, and Z
-- Win by making four in a row
-- Supports score tracking
+Post-Game: Winner plays against AI
 
----
+2. AI Mode
+Board: 3x3
 
-## Features
+Player vs AI
 
-- **Scoreboard Logging**  
-  Maintains game results in a `scoreboard.txt` file.
+AI Logic:
 
-- **Dynamic Board Drawing**  
-  Boards are rendered using formatted console output for clarity.
+First tries to win
 
-- **Input Validation**  
-  Ensures players make valid moves (no overwriting, correct turn, etc.)
+Then tries to block player
 
-- **ASCII Art Loader**  
-  Simple animated loading screen using beeps and special characters.
+Else plays a random move
 
-- **Windows Console Support**  
-  Uses Windows-specific libraries (`windows.h`, `conio.h`) for cursor control and audio.
+Now uses recursive logic instead of loops for smarter move selection
 
----
+Results are saved in scoreboard.txt
 
+3. 3-Player Mode (Extended)
+Board: 4x4 grid
+
+Players: Symbols X, Y, and Z
+
+Win Condition: 4 in a row (horizontal/vertical/diagonal)
+
+Results saved with player number and name
+
+Features
+ Scoreboard Logging
+Uses scoreboard.txt to store game outcomes
+
+Tracks:
+
+Winner and loser in AI mode
+
+Winning player in 3-player mode
+
+🎮 Interactive Terminal UI
+Cursor movement using gotoxy
+
+Screen cleared after each move
+
+Beep sounds in loading animation for feedback
+
+ AI Uses Recursion
+aiMove() function rewritten to use recursive logic
+
+Smarter AI that checks for:
+
+Winning opportunity
+
+Blocking opponent
+
+Picking a random empty spot
+
+ Input Validation
+No overwriting allowed
+
+Symbols must be valid
+
+Input range is validated in all modes
+
+ Extras
+load() function with beep-based animated loader
+
+Color changes using system("COLOR Fx") for game states
 ## How to Compile
 
 > This game is designed for Windows.

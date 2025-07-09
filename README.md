@@ -1,105 +1,98 @@
-Multi-Mode Tic-Tac-Toe
-Overview
+## Multi-Mode Tic-Tac-Toe
+
+### Overview
+
 This is a console-based Tic-Tac-Toe game in C designed for Windows terminals. It supports:
 
-2-player classic mode
+* 2-player classic mode
+* AI mode (Player vs Computer)
+* 3-player mode (4x4 board)
+* Scoreboard tracking with file I/O
 
-AI mode (Player vs Computer)
+The game uses Windows-only functions like `gotoxy`, `Beep`, and `system("cls")` for an interactive experience.
 
-3-player mode (4x4 board)
+---
 
-Scoreboard tracking with file I/O
-It uses gotoxy, Beep, and system("cls") for interactive console behavior.
+### Game Modes
 
-Game Modes
-1. Classic 2-Player Mode
-Board: 3x3
+#### 1. Classic 2-Player Mode
 
-Players: Choose between X and O
+* **Board:** 3x3
+* **Players:** Choose between `X` and `O`
+* **Win Condition:** 3 in a row (row, column, or diagonal)
+* **Post-Game:** Winner plays against AI
 
-Win Condition: 3 in a row (row/column/diagonal)
+#### 2. AI Mode
 
-Post-Game: Winner plays against AI
+* **Board:** 3x3
+* **Players:** Human vs Computer
+* **AI Logic:**
 
-2. AI Mode
-Board: 3x3
+  * Tries to win
+  * If not possible, tries to block the player
+  * Otherwise, plays a random move
+* **Implementation:** Uses recursive logic instead of loops for smarter decision-making
+* **Tracking:** Results are saved in `scoreboard.txt`
 
-Player vs AI
+#### 3. 3-Player Mode (Extended)
 
-AI Logic:
+* **Board:** 4x4 grid
+* **Players:** Symbols `X`, `Y`, and `Z`
+* **Win Condition:** 4 in a row (horizontal, vertical, or diagonal)
+* **Tracking:** Stores winner’s name and player number in `scoreboard.txt`
 
-First tries to win
+---
 
-Then tries to block player
+### Features
 
-Else plays a random move
+#### Scoreboard Logging
 
-Now uses recursive logic instead of loops for smarter move selection
+* Uses `scoreboard.txt` to store game outcomes
+* Tracks:
 
-Results are saved in scoreboard.txt
+  * Winner and loser in AI mode
+  * Winning player in 3-player mode
 
-3. 3-Player Mode (Extended)
-Board: 4x4 grid
+#### Interactive Terminal UI
 
-Players: Symbols X, Y, and Z
+* Cursor movement using `gotoxy`
+* Clears screen after each move with `system("cls")`
+* Beep sounds during loading animation for feedback
 
-Win Condition: 4 in a row (horizontal/vertical/diagonal)
+#### AI Uses Recursion
 
-Results saved with player number and name
+* `aiMove()` rewritten to use recursive logic
+* Checks for:
 
-Features
- Scoreboard Logging
-Uses scoreboard.txt to store game outcomes
+  * Winning opportunities
+  * Blocking opponent
+  * Choosing a random move if needed
 
-Tracks:
+#### Input Validation
 
-Winner and loser in AI mode
+* Prevents overwriting existing moves
+* Validates symbol choices and input range
+* Ensures proper player turns in all modes
 
-Winning player in 3-player mode
+#### Extras
 
-🎮 Interactive Terminal UI
-Cursor movement using gotoxy
+* `load()` function shows an animated loading screen with beeps
+* Console color changes using `system("COLOR Fx")` based on game state
 
-Screen cleared after each move
+---
 
-Beep sounds in loading animation for feedback
-
- AI Uses Recursion
-aiMove() function rewritten to use recursive logic
-
-Smarter AI that checks for:
-
-Winning opportunity
-
-Blocking opponent
-
-Picking a random empty spot
-
- Input Validation
-No overwriting allowed
-
-Symbols must be valid
-
-Input range is validated in all modes
-
- Extras
-load() function with beep-based animated loader
-
-Color changes using system("COLOR Fx") for game states
-## How to Compile
+### How to Compile
 
 > This game is designed for Windows.
 
-Use any C compiler that supports Windows headers.  
-Example using GCC (MinGW):
+Use a C compiler that supports Windows headers. Example using **GCC (MinGW)**:
 
 ```bash
 gcc -o tictactoe tictactoe.c -lwinmm
 ```
 
-Then run the game:
+To run the game:
 
 ```bash
 tictactoe.exe
 ```
-
